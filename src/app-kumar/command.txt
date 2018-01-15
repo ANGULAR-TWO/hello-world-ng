@@ -1,0 +1,3 @@
+ng g c course:create component
+nd g s email:create service file
+npm install bootstrap --save

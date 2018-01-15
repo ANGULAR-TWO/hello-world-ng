@@ -3,14 +3,24 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+import { CourseComponent } from './course.component';
+import { DataComponent } from './data.component';
+import {FacultyService} from './faculty.service';
+import { HelloComponent } from './hello/hello.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {SummaryPipe} from './summary.pipe';
+import { FavoriteComponent } from './favorite/favorite.component'
+import {OnFavoriteChangedEventArgs} from './favorite/favorite.component'
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, CourseComponent, HelloComponent, DataComponent, SummaryPipe, FavoriteComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule, FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [FacultyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
