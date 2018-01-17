@@ -4,6 +4,7 @@ import { Component,Input } from '@angular/core';
 @Component({
     selector: 'data',
     template: `
+    <h1> Data Component </h1>
     <h1>### Custom Pipes ### </h1>
     {{text | summary:'3'}}
 

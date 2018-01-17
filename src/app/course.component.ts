@@ -3,7 +3,7 @@ import {FacultyService} from './faculty.service';
 @Component({
     selector:'course',
     template:`<h1>Angular Course: {{getTitle()}}</h1>
-    <h1>Course</h1>
+    <h1>Course Component</h1>
     <ul>
       <li *ngFor="let course of this.getCourses()" >
       {{course}}
