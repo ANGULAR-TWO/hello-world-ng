@@ -10,11 +10,12 @@ import { HelloComponent } from './hello/hello.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {SummaryPipe} from './summary.pipe';
 import { FavoriteComponent } from './favorite/favorite.component'
-import {OnFavoriteChangedEventArgs} from './favorite/favorite.component'
+import {OnFavoriteChangedEventArgs} from './favorite/favorite.component';
+import { PanelComponent } from './panel/panel.component'
 
 @NgModule({
   declarations: [
-    AppComponent, CourseComponent, HelloComponent, DataComponent, SummaryPipe, FavoriteComponent
+    AppComponent, CourseComponent, HelloComponent, DataComponent, SummaryPipe, FavoriteComponent, PanelComponent
   ],
   imports: [
     BrowserModule, FormsModule,
