@@ -1,4 +1,88 @@
-<h2>Directives In NG </h2>
-<p>
-  directives works! {{title}}
-</p>
+<h1 style="color:red">Directives In NG </h1>
+
+<h2 style="color:green"> Custom Directive</h2>
+<!-- <input type="text" appInputFormat [format]="'uppercase'"> -->
+
+<input type="text" [appInputFormat]="'uppercase'">
+
+<h2 style="color:green"> Safe Traversal Operator (?) or use *ngIf</h2>
+{{task.assignee?.name}}
+<h2 style="color:green"> Leading asterisk -------------</h2>
+*ngIf converts into property binding with ng-template <br/>
+<!--
+<ng-template [ngIf]="condition">
+</ng-template>
+-->
+<h2 style="color:green"> ngFor ------------------</h2>
+<button (click)="loadCourses()">Track By Load</button>
+<ul>
+  <!--track by -->
+  <li  *ngFor="let course of courseInfo; trackBy:trackCourse">
+
+    {{course.id}} -- {{course.name}}
+
+  </li>
+</ul>
+<ul>
+  <!-- change detection  ADD, UPDATE, REMOVE-->
+  <button (click)="onAdd()">Add</button>
+  <!-- for with options -->
+  <li *ngFor="let course of courseList; index as i; even as isEven">
+   {{i}} -- {{course.name}} -- <span *ngIf="isEven"> Even Row</span> <button (click)="onRemove(course)">Remove</button>
+ 
+ <button (click)="onChange(course)">Update</button>
+  </li>
+</ul>
+<h2 style="color:green">ngSwitchCase ------</h2>
+<div>
+<ul class="nav nav-pills">
+  <li  [class.active]="viewMode=='map'"><a  (click)="viewMode='map'">Map View</a></li>
+  <li [class.active]="viewMode=='list'"><a (click)="viewMode='list'">List View</a></li>
+</ul>
+<div [ngSwitch]="viewMode">  
+<div *ngSwitchCase="'map'">Map View Content</div>
+<div *ngSwitchCase="'list'">List View Content</div>
+<div *ngSwitchDefault> Other Wise</div>
+</div>
+</div>
+<h2 style="color:green"> Hidden Property --------- </h2>
+<!-- never hides the dom. for small trees-->
+<div [hidden]="courses.length <=0">
+<h3>List of courses</h3>
+</div>
+<div [hidden]="courses.length > 0">
+<h3>No courses</h3>
+</div>
+
+<h2 style="color:green"> *ngIf ------------ </h2>
+<!-- hides the dom conditionally. use for big depth dom-->
+<!-- using ng-template for display and div for decision-->
+<div *ngIf="courses.length > 0;then coursesList else noCourses1">
+
+</div>
+
+<ng-template #coursesList>
+  <h3>List of courses </h3>
+</ng-template>
+
+<ng-template #noCourses1>
+  <h3>No Courses (ng -template only) </h3>
+</ng-template>
+
+<!-- div + ng-template -->
+<div *ngIf="courses.length > 0; else noCourses">
+  <h3>List of courses </h3>
+</div>
+
+<ng-template #noCourses>
+  <h3>No Courses (ng -template) </h3>
+</ng-template>
+
+<!--using normal div -->
+<div *ngIf="courses.length > 0">
+  <h3>List of courses </h3>
+</div>
+
+<div *ngIf="courses.length <=0">
+  <h3>No Courses </h3>
+</div>

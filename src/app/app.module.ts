@@ -12,11 +12,13 @@ import {SummaryPipe} from './summary.pipe';
 import { FavoriteComponent } from './favorite/favorite.component'
 import {OnFavoriteChangedEventArgs} from './favorite/favorite.component';
 import { PanelComponent } from './panel/panel.component';
-import { DirectivesComponent } from './directives/directives.component'
+import { DirectivesComponent } from './directives/directives.component';
+import { InputFormatDirective } from './input-format.directive';
+import { TdfComponent } from './tdf/tdf.component'
 
 @NgModule({
   declarations: [
-    AppComponent, CourseComponent, HelloComponent, DataComponent, SummaryPipe, FavoriteComponent, PanelComponent, DirectivesComponent
+    AppComponent, CourseComponent, HelloComponent, DataComponent, SummaryPipe, FavoriteComponent, PanelComponent, DirectivesComponent, InputFormatDirective, TdfComponent
   ],
   imports: [
     BrowserModule, FormsModule,

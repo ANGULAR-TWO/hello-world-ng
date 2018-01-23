@@ -1,0 +1,53 @@
+<h1 style="color:red"> Template Driven Forms </h1>
+<h2 style="color:green">ngModel and Validations</h2>
+<!--[(ngModel)]="firstName" -->
+<!-- ngModel name="firstName" -->
+<form>
+  <div class="form-group"><label for="lastName">LastName</label>
+    <input required minlength="2" maxlength="4" pattern="good" type="text" ngModel name="lastName" #lastName="ngModel" (change)="log(lastName)"
+      id="lastName" class="form-control">
+    <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">
+      <div *ngIf="lastName.errors.required">LastName is required</div>
+      <div *ngIf="lastName.errors.minlength">LastName min characters {{lastName.errors.minlength.requiredLength}}</div>
+      <div *ngIf="lastName.errors.maxlength">LastName max charcaters 4</div>
+      <div *ngIf="lastName.errors.pattern">Pattern not matching</div>
+    </div>
+  </div>
+  <div class="form-group"><label for="firstName">FirstName</label>
+    <input required type="text" ngModel name="firstName" #firstName="ngModel" (change)="log(firstName)" id="firstName" class="form-control">
+    <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">FirstName required</div>
+  </div>
+  <div class="form-group"><label for="comment">Comment</label>
+    <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control">
+          </textarea>
+  </div>
+
+  <button class="btn btn-primary">Submit</button>
+
+</form>
+<h2 style="color:green"> Types of Forms: Template Driven (Using Directives) and Rective Forms (using code)</h2>
+[ value , touched , untouched, dirty (changed), pristine (unchanged), valid, errors
+<br/> For each input field of the form to evaluate above values we need a control object.
+<br/> Each form is a control group (form group: represents one or more controls) because a form has at least a form control
+object due to presnece of input.
+<br/> You can have a form group for shipping address form and another form group for billing address.
+<br/> All the properties(value , touched , untouched, dirty (changed), pristine (unchanged), valid, errors ) for control
+class is applicatble to form group.
+
+<h2 style="color:green"> Building Contact Form </h2>
+<div class="col-md-12">
+
+  <form>
+    <div class="form-group"><label for="firstName">FirstName</label>
+      <input type="text" id="name" class="form-control">
+    </div>
+    <div class="form-group"><label for="message">Comment</label>
+      <textarea name="message" id="message" cols="30" rows="10" class="form-control">
+          </textarea>
+    </div>
+
+    <button class="btn btn-primary">Submit</button>
+
+  </form>
+
+</div>
