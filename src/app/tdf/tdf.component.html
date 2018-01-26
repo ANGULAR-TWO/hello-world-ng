@@ -2,15 +2,20 @@
 <h2 style="color:green">ngModel and Validations</h2>
 <!--[(ngModel)]="firstName" -->
 <!-- ngModel name="firstName" -->
-<form>
-  <div class="form-group"><label for="lastName">LastName</label>
-    <input required minlength="2" maxlength="4" pattern="good" type="text" ngModel name="lastName" #lastName="ngModel" (change)="log(lastName)"
-      id="lastName" class="form-control">
-    <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">
-      <div *ngIf="lastName.errors.required">LastName is required</div>
-      <div *ngIf="lastName.errors.minlength">LastName min characters {{lastName.errors.minlength.requiredLength}}</div>
-      <div *ngIf="lastName.errors.maxlength">LastName max charcaters 4</div>
-      <div *ngIf="lastName.errors.pattern">Pattern not matching</div>
+<form #f="ngForm" (ngSubmit)="submit(f)">
+
+  <!-- ngModelGroup -->
+  <div ngModelGroup="contact" #contact="ngModelGroup">
+    <div *ngIf="!contact.valid"> .. do error display </div>
+    <div class="form-group"><label for="lastName">LastName</label>
+      <input required minlength="2" maxlength="4" pattern="good" type="text" ngModel name="lastName" #lastName="ngModel" (change)="log(lastName)"
+        id="lastName" class="form-control">
+      <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">
+        <div *ngIf="lastName.errors.required">LastName is required</div>
+        <div *ngIf="lastName.errors.minlength">LastName min characters {{lastName.errors.minlength.requiredLength}}</div>
+        <div *ngIf="lastName.errors.maxlength">LastName max charcaters 4</div>
+        <div *ngIf="lastName.errors.pattern">Pattern not matching</div>
+      </div>
     </div>
   </div>
   <div class="form-group"><label for="firstName">FirstName</label>
@@ -21,8 +26,36 @@
     <textarea ngModel name="comment" id="comment" cols="30" rows="10" class="form-control">
           </textarea>
   </div>
+  <!-- working with checkboxes -->
+  <div class="checkbox"><label>
+    <input type="checkbox" ngModel name="isSubscribed">Subscribe to mailing list
+  </label></div>
+  <div class="form-group"><label for="contactMethod"></label>
+  <select 
+    ngModel 
+    name="contactMethod" 
+    id="contactMethod" 
+    class="form-control">
+    <option value=""></option>
+    <option *ngFor="let method of contactMethods" [ngValue]="method">{{method.name}}</option>
+   <!--<option *ngFor="let method of contactMethods" [value]="method.id">{{method.name}}</option>
+    -->
+  </select>
 
-  <button class="btn btn-primary">Submit</button>
+  <div *ngFor="let method of contactMethods" class="radio"><label>
+    <input type="radio" ngModel name="contactMethod" [value]="method.id">{{method.name}}</label>
+  </div>
+
+  <!--
+    <div class="radio"><label>
+      <input type="radio" ngModel name="contactMethod" value="2">Phone</label>
+    </div>
+  -->
+</div>
+  <p>{{ f.value | json }} </p>
+
+  <!-- hidding submit button-->
+  <button class="btn btn-primary" [disabled]="!f.valid">Submit</button>
 
 </form>
 <h2 style="color:green"> Types of Forms: Template Driven (Using Directives) and Rective Forms (using code)</h2>

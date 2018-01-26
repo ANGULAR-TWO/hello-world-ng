@@ -17,4 +17,17 @@ export class TdfComponent implements OnInit {
     console.log(x);
   }
 
+  submit(f)
+  {
+      console.log(f);
+  }
+
+  contactMethods=[
+
+    {id:1,name:'Email'},
+    
+    {id:2,name:'Phone'},
+    
+    {id:3,name:'Courier'},
+  ];
 }
